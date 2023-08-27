@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "client-app",
+    "slug": "hachishop-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/hachiman-icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/yukino-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/hachiman-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9651b259-db82-4d00-b2d4-fa17e2c537de"
+      }
+    },
+    "owner": "k43w"
+  }
+}
