@@ -99,7 +99,7 @@ const OrderScreen = ({ navigation }: any) => {
         e.route.key === "ToPay"
           ? orders?.filter(
               (x) => x.orderStatus === 0 && x.paymentImage === "unpaid"
-            ).length === 1 && (
+            ).length !== 0 && (
               <Badge
                 style={{
                   fontSize: 20,
@@ -171,7 +171,13 @@ const OrderScreen = ({ navigation }: any) => {
           />
         );
       case "MyReviews":
-        return <TabReviewScreen Reviews={Reviews} title="MyReviews" navigation={navigation} />;
+        return (
+          <TabReviewScreen
+            Reviews={Reviews}
+            title="MyReviews"
+            navigation={navigation}
+          />
+        );
     }
   };
 

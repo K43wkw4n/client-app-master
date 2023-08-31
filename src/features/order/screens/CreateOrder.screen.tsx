@@ -31,11 +31,12 @@ import * as FileSystem from "expo-file-system";
 import { createOrder } from "../../../store/context/shopCartSlice";
 import { OptionCheckout } from "../../../checkout/screens/Option.Checkout.Modal";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Checkout } from "./../../../checkout/screens/Checkout.screen"; 
+import { Checkout } from "./../../../checkout/screens/Checkout.screen";
+import { observer } from "mobx-react-lite";
 
 var width = Dimensions.get("window").width;
 
-export const CreateOrderScreen = ({ route, navigation }: any) => {
+const CreateOrderScreen = ({ route, navigation }: any) => {
   const { shopCart } = route.params;
   const { token, address, user }: any = useAppSelector(
     (state) => state.account
@@ -321,6 +322,7 @@ export const CreateOrderScreen = ({ route, navigation }: any) => {
                 justifyContent: "space-between",
                 borderBottomWidth: 0.5,
                 marginTop: 4,
+                height: 40,
               }}
             >
               <View style={{ flexDirection: "row" }}>
@@ -338,7 +340,7 @@ export const CreateOrderScreen = ({ route, navigation }: any) => {
                 </Text>
               </View>
               {user?.coin > 0 && (
-                <View style={{ position: "absolute", right: 0, top: -9 }}>
+                <View style={{ top: -10 }}>
                   <Switch
                     color="black"
                     value={isSwitchOn}
@@ -555,6 +557,8 @@ export const CreateOrderScreen = ({ route, navigation }: any) => {
     </>
   );
 };
+
+export default observer(CreateOrderScreen);
 
 const styles = StyleSheet.create({
   dropzone: {

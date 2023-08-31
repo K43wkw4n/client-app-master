@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Lottie from "lottie-react-native";
 import { useAppSelector } from "../../store/store";
 import { CouponScreen } from "../coupon/screens/Coupon.screen";
@@ -14,10 +14,10 @@ import { width } from "../feature";
 
 export const OptionCoupon = ({ optionCoupon, setCoupon }: any) => {
   const { coupon }: any = useAppSelector((state) => state.coupon);
-
   const Coupons = coupon.filter((x: any) => x.quantity > 0);
-
   const currentDate = new Date();
+
+  const [countShow, setCountShow] = useState(0);
 
   return (
     <Modal animationType="slide" transparent={true}>
@@ -28,7 +28,7 @@ export const OptionCoupon = ({ optionCoupon, setCoupon }: any) => {
       <View style={{ flex: 0.8, backgroundColor: "#fff" }}>
         <ScrollView>
           <>
-            {Coupons?.length === 0 ? (
+            {countShow === 0 ? (
               <>
                 <View style={styles.lottie}>
                   <Lottie
@@ -40,54 +40,54 @@ export const OptionCoupon = ({ optionCoupon, setCoupon }: any) => {
               </>
             ) : (
               <>
-                {[1, 2, 3].map(() => (
-                  <>
-                    {Coupons?.map((item: any) => {
-                      const date = item.expire;
-                      const Expire = new Date(date);
+                {Coupons?.map((item: any) => {
+                  const date = item.expire;
+                  const Expire = new Date(date);
 
-                      return (
-                        currentDate < Expire && (
-                          <>
-                            {item.quantity > 0 && (
-                              <TouchableOpacity
-                                style={{
-                                  backgroundColor: "#000",
-                                  margin: 10,
-                                  borderRadius: 10,
-                                  flexDirection: "row",
-                                  position: "relative",
-                                }}
-                                onPress={() => [
-                                  setCoupon(item),
-                                  optionCoupon(false),
-                                ]}
-                              >
-                                <CouponScreen item={item} />
-                              </TouchableOpacity>
-                              // <TouchableOpacity
-                              //   style={{
-                              //     margin: 10,
-                              //     padding: 20,
-                              //     borderWidth: 0.7,
-                              //   }}
-                              //   onPress={() => [setCoupon(item), optionCoupon(false)]}
-                              // >
-                              //   <Text style={{ fontSize: 15 }}>{item.name}</Text>
-                              //   <Text style={{ fontSize: 15 }}>
-                              //     หมดอายุ : {moment(item.expire).format("DD/MM/YY")}
-                              //   </Text>
-                              //   <Text style={{ fontSize: 15 }}>
-                              //     จำนวน : {item.quantity}
-                              //   </Text>
-                              // </TouchableOpacity>
-                            )}
-                          </>
-                        )
-                      );
-                    })}
-                  </>
-                ))}
+                  if (currentDate < Expire) {
+                    setCountShow(countShow + 1);
+                  }
+
+                  return (
+                    currentDate < Expire && (
+                      <>
+                        {item.quantity > 0 && (
+                          <TouchableOpacity
+                            style={{
+                              backgroundColor: "#000",
+                              margin: 10,
+                              borderRadius: 10,
+                              flexDirection: "row",
+                              position: "relative",
+                            }}
+                            onPress={() => [
+                              setCoupon(item),
+                              optionCoupon(false),
+                            ]}
+                          >
+                            <CouponScreen item={item} />
+                          </TouchableOpacity>
+                          // <TouchableOpacity
+                          //   style={{
+                          //     margin: 10,
+                          //     padding: 20,
+                          //     borderWidth: 0.7,
+                          //   }}
+                          //   onPress={() => [setCoupon(item), optionCoupon(false)]}
+                          // >
+                          //   <Text style={{ fontSize: 15 }}>{item.name}</Text>
+                          //   <Text style={{ fontSize: 15 }}>
+                          //     หมดอายุ : {moment(item.expire).format("DD/MM/YY")}
+                          //   </Text>
+                          //   <Text style={{ fontSize: 15 }}>
+                          //     จำนวน : {item.quantity}
+                          //   </Text>
+                          // </TouchableOpacity>
+                        )}
+                      </>
+                    )
+                  );
+                })}
               </>
             )}
           </>

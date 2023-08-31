@@ -2,11 +2,11 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ShopCartScreen } from "../../features/shopCart/screens/ShopCart.screen";
-import   DetailsProduct   from "../../features/product/screens/DetailsProduct";
-import { CreateOrderScreen } from "../../features/order/screens/CreateOrder.screen";
+import DetailsProduct from "../../features/product/screens/DetailsProduct";
+import CreateOrderScreen from "../../features/order/screens/CreateOrder.screen";
 import { AddressScreen } from "../../features/address/screens/Address.screen";
 import { Checkout } from "../../checkout/screens/Checkout.screen";
-import { Elements } from "@stripe/react-stripe-js"; 
+import { Elements } from "@stripe/react-stripe-js";
 import { EditAddressScreen } from "../../features/address/screens/EditAddress.screen";
 
 const Stack = createStackNavigator();

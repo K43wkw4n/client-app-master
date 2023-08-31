@@ -45,6 +45,8 @@ export const HomeScreen = ({ navigation }: any) => {
     (state) => state.account
   );
 
+  const currentDate = new Date();
+
   const { loadNotifications } = useStore().userOrderStore;
 
   const [search, setSearch]: any = useState("");
@@ -215,41 +217,48 @@ export const HomeScreen = ({ navigation }: any) => {
                   </View>
                   <View>
                     <ScrollView horizontal={true}>
-                      {coupon?.map((item: any) => (
-                        <>
-                          {item.quantity > 0 && (
+                      {coupon?.map((item: any) => {
+                        const date = item.expire;
+                        const Expire = new Date(date);
+
+                        return (
+                          currentDate < Expire && (
                             <>
-                              <View
-                                style={{
-                                  backgroundColor: "#000",
-                                  margin: 10,
-                                  borderRadius: 10,
-                                  flexDirection: "row",
-                                  position: "relative",
-                                }}
-                              >
-                                <CouponScreen item={item} />
-                              </View>
+                              {item.quantity > 0 && (
+                                <>
+                                  <View
+                                    style={{
+                                      backgroundColor: "#000",
+                                      margin: 10,
+                                      borderRadius: 10,
+                                      flexDirection: "row",
+                                      position: "relative",
+                                    }}
+                                  >
+                                    <CouponScreen item={item} />
+                                  </View>
+                                </>
+                                // <View
+                                //   style={{
+                                //     margin: 10,
+                                //     padding: 20,
+                                //     borderWidth: 0.7,
+                                //   }}
+                                // >
+                                //   <Text style={{ fontSize: 15 }}>{item.name}</Text>
+                                //   <Text style={{ fontSize: 15 }}>
+                                //     หมดอายุ :{" "}
+                                //     {moment(item.expire).format("DD/MM/YY")}
+                                //   </Text>
+                                //   <Text style={{ fontSize: 15 }}>
+                                //     จำนวน : {item.quantity}
+                                //   </Text>
+                                // </View>
+                              )}
                             </>
-                            // <View
-                            //   style={{
-                            //     margin: 10,
-                            //     padding: 20,
-                            //     borderWidth: 0.7,
-                            //   }}
-                            // >
-                            //   <Text style={{ fontSize: 15 }}>{item.name}</Text>
-                            //   <Text style={{ fontSize: 15 }}>
-                            //     หมดอายุ :{" "}
-                            //     {moment(item.expire).format("DD/MM/YY")}
-                            //   </Text>
-                            //   <Text style={{ fontSize: 15 }}>
-                            //     จำนวน : {item.quantity}
-                            //   </Text>
-                            // </View>
-                          )}
-                        </>
-                      ))}
+                          )
+                        );
+                      })}
                     </ScrollView>
                   </View>
                   {/* <Text

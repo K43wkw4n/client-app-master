@@ -2,7 +2,7 @@
   "expo": {
     "name": "client-app",
     "slug": "hachishop-native",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/hachiman-icon.png",
     "userInterfaceStyle": "light",
@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/hachiman-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.k43w.hachishopnative"
     },
     "web": {
       "favicon": "./assets/favicon.png"

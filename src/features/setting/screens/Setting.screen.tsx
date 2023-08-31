@@ -161,7 +161,7 @@ const SettingScreen = ({ navigation }: any) => {
               ></Badge>
             ) : orders?.filter(
                 (x) => x.orderStatus === 0 && x.paymentImage === "unpaid"
-              ).length === 1 ? (
+              ).length !== 0 ? (
               <Badge
                 style={{
                   position: "relative",
